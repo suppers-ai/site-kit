@@ -17,14 +17,17 @@ Foundation v0.1.0 ships:
 
 ## Use it
 
+> **Note:** the URL below is a placeholder. GitHub Pages hosting lands
+> in a follow-up PR. Until then, vendor `dist/` and `fonts/` into your
+> own static assets.
+
 ```html
 <link rel="stylesheet" href="https://…/site-kit/dist/design-system.css">
 ```
 
 The CSS references font files via `../fonts/`, so consumers must
 deploy `dist/design-system.css` alongside a sibling `fonts/` directory
-(i.e. both at the same URL prefix). Until the kit is hosted on
-GitHub Pages, vendor the two folders into your own static assets.
+(i.e. both at the same URL prefix).
 
 ## Override the accent
 
@@ -42,7 +45,8 @@ Hover and focus states derive from `--sa-accent` automatically via
 
 ## Layout
 
-- `src/` — editable sources (`tokens.css`, `reset.css`, `typography.css`).
+- `src/` — editable sources (`tokens.css`, `reset.css`, `typography.css`,
+  and `design-system.css` as the dev `@import` entry).
 - `dist/design-system.css` — concatenated build output. Do not edit.
 - `fonts/` — vendored Itim and JetBrains Mono (SIL OFL, see
   `fonts/LICENSES/`).
