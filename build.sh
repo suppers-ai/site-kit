@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# build.sh — concatenate src/*.css into dist/design-system.css.
+# build.sh — concatenate src/*.css into dist/design-system.css, and
+# copy src/components/*.js into dist/components/ with a syntax check.
 # No minification, no PostCSS — browsers gzip on the wire and only
 # modern targets are supported.
 
@@ -35,4 +36,19 @@ if (( root_line >= first_var_line )); then
 fi
 
 bytes=$(wc -c < "$out")
+
+# Components: 1-to-1 copy from src/components/ to dist/components/,
+# with a syntax check via `node --check`.
+mkdir -p dist/components
+shopt -s nullglob
+component_count=0
+for src_js in src/components/*.js; do
+  dest=dist/components/$(basename "$src_js")
+  cp "$src_js" "$dest"
+  node --check "$dest"
+  component_count=$((component_count + 1))
+done
+shopt -u nullglob
+
 printf 'wrote %s (%d bytes; tokens before vars OK)\n' "$out" "$bytes"
+printf 'copied %d component(s) to dist/components/\n' "$component_count"

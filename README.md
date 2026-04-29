@@ -29,6 +29,33 @@ The CSS references font files via `../fonts/`, so consumers must
 deploy `dist/design-system.css` alongside a sibling `fonts/` directory
 (i.e. both at the same URL prefix).
 
+### Components
+
+Each web component is a single ES module under `dist/components/`. A
+page imports only the components it uses:
+
+```html
+<script type="module" src="https://…/site-kit/dist/components/sa-header.js"></script>
+<script type="module" src="https://…/site-kit/dist/components/sa-hero.js"></script>
+
+<sa-header>
+  <a slot="brand" href="/">acme.example</a>
+  <nav slot="nav"><a href="/docs">Docs</a></nav>
+  <a slot="actions" href="/login">Sign in</a>
+</sa-header>
+
+<sa-hero
+  title="Compose your site from blocks"
+  subtitle="One link, one accent override, every component themed."
+  cta-href="/docs"
+  cta-label="Read more">
+</sa-hero>
+```
+
+Components are styled via Shadow DOM and pick up `--sa-accent`
+automatically through CSS-custom-property inheritance — no extra
+wiring per component.
+
 ## Override the accent
 
 The default accent is `#1e3a5f`. Override with one declaration in your

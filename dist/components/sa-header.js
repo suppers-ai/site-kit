@@ -1,0 +1,76 @@
+// sa-header.js — site-kit header component.
+// Slot-heavy chrome: brand left, nav center, actions right.
+// At narrow viewports, slots stack vertically (pure CSS responsive,
+// no JS-driven hamburger).
+
+const tpl = document.createElement('template');
+tpl.innerHTML = `
+<style>
+  :host {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--sa-bg-card);
+    border-bottom: 1px solid var(--sa-border);
+  }
+  [part="container"] {
+    display: flex;
+    align-items: center;
+    gap: var(--sa-space-4);
+    max-width: var(--sa-max-width);
+    margin-inline: auto;
+    padding: var(--sa-space-3) var(--sa-space-6);
+  }
+  [part="brand"] {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  [part="nav"] {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--sa-space-4);
+  }
+  [part="actions"] {
+    display: flex;
+    align-items: center;
+    gap: var(--sa-space-3);
+    flex-shrink: 0;
+  }
+  ::slotted(a) {
+    color: var(--sa-text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  ::slotted(a:hover) {
+    color: var(--sa-accent);
+  }
+  @media (max-width: 720px) {
+    [part="container"] {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--sa-space-3);
+    }
+    [part="nav"] {
+      flex-wrap: wrap;
+    }
+  }
+</style>
+<header part="container">
+  <div part="brand"><slot name="brand"></slot></div>
+  <div part="nav"><slot name="nav"></slot></div>
+  <div part="actions"><slot name="actions"></slot></div>
+</header>
+`;
+
+class SaHeader extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(tpl.content.cloneNode(true));
+  }
+}
+
+customElements.define('sa-header', SaHeader);

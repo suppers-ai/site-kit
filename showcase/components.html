@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>site-kit — components</title>
+<link rel="stylesheet" href="../dist/design-system.css">
+<script type="module" src="../dist/components/sa-header.js"></script>
+<script type="module" src="../dist/components/sa-hero.js"></script>
+<style>
+  /* Showcase-specific layout. Anything used here that proves common
+     should graduate into the kit in a follow-up PR. */
+  body { padding-block: var(--sa-space-12); }
+
+  section.demo-block { margin-block: var(--sa-space-16); }
+
+  section.demo-block > h2 {
+    border-bottom: 1px solid var(--sa-border);
+    padding-bottom: var(--sa-space-2);
+    margin-bottom: var(--sa-space-6);
+  }
+
+  .demo-stage {
+    background: var(--sa-bg-card);
+    border: 1px solid var(--sa-border);
+    border-radius: var(--sa-radius-md);
+    padding: var(--sa-space-4);
+    margin-bottom: var(--sa-space-6);
+  }
+
+  .demo-source {
+    margin-top: var(--sa-space-4);
+  }
+
+  .demo-source summary {
+    cursor: pointer;
+    font-family: var(--sa-font-mono);
+    font-size: var(--sa-text-sm);
+    color: var(--sa-text-muted);
+    padding: var(--sa-space-1) 0;
+  }
+
+  .demo-api-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--sa-space-4);
+    font-size: var(--sa-text-sm);
+  }
+
+  .demo-api-table th,
+  .demo-api-table td {
+    text-align: left;
+    padding: var(--sa-space-2) var(--sa-space-3);
+    border-bottom: 1px solid var(--sa-border);
+    vertical-align: top;
+  }
+
+  .demo-api-table th {
+    color: var(--sa-text-muted);
+    font-weight: 400;
+    font-size: var(--sa-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-api-table code {
+    font-size: 0.95em;
+  }
+
+  header.kit-header {
+    display: flex; align-items: baseline; gap: var(--sa-space-4);
+    border-bottom: 1px solid var(--sa-border);
+    padding-bottom: var(--sa-space-4);
+    margin-bottom: var(--sa-space-12);
+  }
+  header.kit-header .accent-chip {
+    background: var(--sa-accent);
+    width: 32px; height: 32px;
+    border-radius: var(--sa-radius-md);
+    align-self: center;
+  }
+  header.kit-header nav {
+    margin-left: auto;
+    display: flex;
+    gap: var(--sa-space-4);
+    font-size: var(--sa-text-sm);
+  }
+  header.kit-header nav a[aria-current="page"] {
+    color: var(--sa-accent);
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<div class="sa-container">
+
+<header class="kit-header">
+  <div class="accent-chip" aria-hidden="true"></div>
+  <h1>site-kit</h1>
+  <span style="color: var(--sa-text-muted)">components</span>
+  <nav aria-label="Showcase pages">
+    <a href="index.html">Tokens</a>
+    <a href="components.html" aria-current="page">Components</a>
+  </nav>
+</header>
+
+<section class="demo-block">
+  <h2>&lt;sa-header&gt;</h2>
+  <p>Sticky top bar with three named slots: <code>brand</code>, <code>nav</code>, <code>actions</code>. At narrow viewports the slots stack vertically; no hamburger menu in v2.</p>
+
+  <div class="demo-stage">
+    <sa-header>
+      <a slot="brand" href="#">acme.example</a>
+      <nav slot="nav">
+        <a href="#">Docs</a>
+        <a href="#">Blog</a>
+        <a href="#">Pricing</a>
+      </nav>
+      <a slot="actions" href="#">Sign in</a>
+    </sa-header>
+  </div>
+
+  <details class="demo-source">
+    <summary>View source</summary>
+<pre><code>&lt;script type="module" src=".../dist/components/sa-header.js"&gt;&lt;/script&gt;
+
+&lt;sa-header&gt;
+  &lt;a slot="brand" href="/"&gt;acme.example&lt;/a&gt;
+  &lt;nav slot="nav"&gt;
+    &lt;a href="/docs"&gt;Docs&lt;/a&gt;
+    &lt;a href="/blog"&gt;Blog&lt;/a&gt;
+    &lt;a href="/pricing"&gt;Pricing&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;a slot="actions" href="/login"&gt;Sign in&lt;/a&gt;
+&lt;/sa-header&gt;</code></pre>
+  </details>
+
+  <table class="demo-api-table">
+    <thead>
+      <tr><th>Kind</th><th>Name</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>slot</td><td><code>brand</code></td><td>Logo or wordmark, usually inside an <code>&lt;a&gt;</code>.</td></tr>
+      <tr><td>slot</td><td><code>nav</code></td><td>A <code>&lt;nav&gt;</code> with 2–5 links.</td></tr>
+      <tr><td>slot</td><td><code>actions</code></td><td>One or two CTA links (sign-in, GitHub, …).</td></tr>
+      <tr><td>part</td><td><code>container</code></td><td>The outer <code>&lt;header&gt;</code>.</td></tr>
+      <tr><td>part</td><td><code>brand</code></td><td>Wrapper around the brand slot.</td></tr>
+      <tr><td>part</td><td><code>nav</code></td><td>Wrapper around the nav slot.</td></tr>
+      <tr><td>part</td><td><code>actions</code></td><td>Wrapper around the actions slot.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="demo-block">
+  <h2>&lt;sa-hero&gt;</h2>
+  <p>Splash block parameterized by attributes. Optional <code>media</code> slot promotes the layout to two columns on wide viewports. CTA renders only when both <code>cta-href</code> and <code>cta-label</code> are set.</p>
+
+  <h3 style="font-size: var(--sa-text-lg); margin-top: var(--sa-space-8); margin-bottom: var(--sa-space-2);">No media, single column</h3>
+  <div class="demo-stage">
+    <sa-hero
+      eyebrow="Foundation v0.1.0"
+      title="Compose your site from blocks"
+      subtitle="A small kit of tokens, typography, and web components. Drop the stylesheet in, override one variable, and you're themed."
+      cta-href="#"
+      cta-label="Get started">
+    </sa-hero>
+  </div>
+
+  <h3 style="font-size: var(--sa-text-lg); margin-top: var(--sa-space-8); margin-bottom: var(--sa-space-2);">With media slot, two columns</h3>
+  <div class="demo-stage">
+    <sa-hero
+      eyebrow="Showcase"
+      title="Same component, different shape"
+      subtitle="Add a media slot and the hero promotes itself to a two-column layout. Stacks again under 720px."
+      cta-href="#"
+      cta-label="Read the spec">
+      <svg slot="media" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder illustration" style="background: var(--sa-gray-100); border-radius: var(--sa-radius-md);">
+        <rect x="20" y="20" width="160" height="100" fill="var(--sa-accent)" opacity="0.15" rx="8"/>
+        <circle cx="60" cy="70" r="20" fill="var(--sa-accent)" opacity="0.4"/>
+        <rect x="90" y="55" width="80" height="8" fill="var(--sa-accent)" opacity="0.5" rx="4"/>
+        <rect x="90" y="75" width="60" height="6" fill="var(--sa-accent)" opacity="0.3" rx="3"/>
+        <rect x="90" y="89" width="70" height="6" fill="var(--sa-accent)" opacity="0.3" rx="3"/>
+      </svg>
+    </sa-hero>
+  </div>
+
+  <h3 style="font-size: var(--sa-text-lg); margin-top: var(--sa-space-8); margin-bottom: var(--sa-space-2);">Centered alignment, no CTA</h3>
+  <div class="demo-stage">
+    <sa-hero
+      align="center"
+      eyebrow="Brand-agnostic"
+      title="Override one variable, theme everything"
+      subtitle="The hero, header, and every future component pick up your --sa-accent automatically.">
+    </sa-hero>
+  </div>
+
+  <details class="demo-source">
+    <summary>View source</summary>
+<pre><code>&lt;script type="module" src=".../dist/components/sa-hero.js"&gt;&lt;/script&gt;
+
+&lt;sa-hero
+  eyebrow="WAFER 0.2"
+  title="Compose backends from blocks"
+  subtitle="A runtime that wires independent blocks into HTTP services."
+  cta-href="/docs/quickstart"
+  cta-label="Get started"&gt;
+  &lt;img slot="media" src="/img/architecture.svg" alt=""&gt;
+&lt;/sa-hero&gt;</code></pre>
+  </details>
+
+  <table class="demo-api-table">
+    <thead>
+      <tr><th>Kind</th><th>Name</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>attribute</td><td><code>title</code></td><td><b>Required.</b> Renders as the H1.</td></tr>
+      <tr><td>attribute</td><td><code>subtitle</code></td><td>Optional supporting paragraph.</td></tr>
+      <tr><td>attribute</td><td><code>eyebrow</code></td><td>Optional small label above the title.</td></tr>
+      <tr><td>attribute</td><td><code>cta-href</code></td><td>CTA link target. Renders only with <code>cta-label</code>.</td></tr>
+      <tr><td>attribute</td><td><code>cta-label</code></td><td>CTA link text. Renders only with <code>cta-href</code>.</td></tr>
+      <tr><td>attribute</td><td><code>align</code></td><td><code>"left"</code> (default) or <code>"center"</code>.</td></tr>
+      <tr><td>slot</td><td><code>media</code></td><td>Optional. With <code>align="left"</code>, promotes layout to two columns.</td></tr>
+      <tr><td>part</td><td><code>container</code></td><td>Outer wrapper.</td></tr>
+      <tr><td>part</td><td><code>eyebrow</code> / <code>title</code> / <code>subtitle</code> / <code>cta</code> / <code>media</code></td><td>Each individually styleable.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div><!-- /.sa-container -->
+</body>
+</html>

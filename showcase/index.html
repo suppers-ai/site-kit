@@ -72,6 +72,16 @@
     border-radius: var(--sa-radius-md);
     align-self: center;
   }
+  header.kit-header nav {
+    margin-left: auto;
+    display: flex;
+    gap: var(--sa-space-4);
+    font-size: var(--sa-text-sm);
+  }
+  header.kit-header nav a[aria-current="page"] {
+    color: var(--sa-accent);
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
@@ -81,6 +91,10 @@
   <div class="accent-chip" aria-hidden="true"></div>
   <h1>site-kit</h1>
   <span style="color: var(--sa-text-muted)">foundation v0.1.0</span>
+  <nav aria-label="Showcase pages">
+    <a href="index.html" aria-current="page">Tokens</a>
+    <a href="components.html">Components</a>
+  </nav>
 </header>
 
 <section>
