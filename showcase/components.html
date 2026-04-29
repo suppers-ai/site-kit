@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="../dist/design-system.css">
 <script type="module" src="../dist/components/sa-header.js"></script>
 <script type="module" src="../dist/components/sa-hero.js"></script>
+<script type="module" src="../dist/components/sa-footer.js"></script>
+<script type="module" src="../dist/components/sa-feature-grid.js"></script>
+<script type="module" src="../dist/components/sa-feature.js"></script>
 <style>
   /* Showcase-specific layout. Anything used here that proves common
      should graduate into the kit in a follow-up PR. */
@@ -222,6 +225,129 @@
       <tr><td>slot</td><td><code>media</code></td><td>Optional. With <code>align="left"</code>, promotes layout to two columns.</td></tr>
       <tr><td>part</td><td><code>container</code></td><td>Outer wrapper.</td></tr>
       <tr><td>part</td><td><code>eyebrow</code> / <code>title</code> / <code>subtitle</code> / <code>cta</code> / <code>media</code></td><td>Each individually styleable.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="demo-block">
+  <h2>&lt;sa-footer&gt;</h2>
+  <p>Bottom-of-page chrome with three named slots: <code>brand</code>, <code>links</code>, <code>copyright</code>. Top row stacks at narrow viewports.</p>
+
+  <div class="demo-stage">
+    <sa-footer>
+      <div slot="brand">
+        <strong>acme.example</strong>
+        <p style="margin: var(--sa-space-1) 0 0; color: var(--sa-text-muted); font-size: var(--sa-text-sm);">Compose your site from blocks.</p>
+      </div>
+      <nav slot="links">
+        <a href="#">Docs</a>
+        <a href="#">Blog</a>
+        <a href="#">Pricing</a>
+      </nav>
+      <span slot="copyright">© 2026 Acme.</span>
+    </sa-footer>
+  </div>
+
+  <details class="demo-source">
+    <summary>View source</summary>
+<pre><code>&lt;script type="module" src=".../dist/components/sa-footer.js"&gt;&lt;/script&gt;
+
+&lt;sa-footer&gt;
+  &lt;div slot="brand"&gt;
+    &lt;strong&gt;acme.example&lt;/strong&gt;
+    &lt;p&gt;Compose your site from blocks.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;nav slot="links"&gt;
+    &lt;a href="/docs"&gt;Docs&lt;/a&gt;
+    &lt;a href="/blog"&gt;Blog&lt;/a&gt;
+    &lt;a href="/pricing"&gt;Pricing&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;span slot="copyright"&gt;© 2026 Acme.&lt;/span&gt;
+&lt;/sa-footer&gt;</code></pre>
+  </details>
+
+  <table class="demo-api-table">
+    <thead>
+      <tr><th>Kind</th><th>Name</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>slot</td><td><code>brand</code></td><td>Logo + optional tagline. Pinned to top-row left.</td></tr>
+      <tr><td>slot</td><td><code>links</code></td><td>One or more <code>&lt;nav&gt;</code> blocks. Top-row right, flex-wraps.</td></tr>
+      <tr><td>slot</td><td><code>copyright</code></td><td>Single line in the bottom row.</td></tr>
+      <tr><td>part</td><td><code>container</code></td><td>The outer <code>&lt;footer&gt;</code>.</td></tr>
+      <tr><td>part</td><td><code>top</code></td><td>Top row (brand + links).</td></tr>
+      <tr><td>part</td><td><code>brand</code> / <code>links</code> / <code>bottom</code> / <code>copyright</code></td><td>Each individually styleable.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="demo-block">
+  <h2>&lt;sa-feature-grid&gt; with &lt;sa-feature&gt; children</h2>
+  <p>Auto-fitting CSS grid (<code>minmax(280px, 1fr)</code>). Children typically <code>&lt;sa-feature&gt;</code> instances but anything works — the grid doesn't introspect children.</p>
+
+  <div class="demo-stage">
+    <sa-feature-grid>
+      <sa-feature title="Block-based">
+        <svg slot="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="8" height="8" rx="1"/>
+          <rect x="13" y="3" width="8" height="8" rx="1"/>
+          <rect x="3" y="13" width="8" height="8" rx="1"/>
+          <rect x="13" y="13" width="8" height="8" rx="1"/>
+        </svg>
+        <p>Compose backends from independent processing units that share nothing but messages.</p>
+      </sa-feature>
+      <sa-feature title="Sandboxed">
+        <span slot="icon" style="font-size: 24px;">🔒</span>
+        <p>Each block runs in its own WASM sandbox with no ambient access — you get to choose what goes in and what comes out.</p>
+      </sa-feature>
+      <sa-feature title="Substitutable">
+        <p>Swap any block for another that speaks the same interface. The icon slot is optional, so this card has none.</p>
+      </sa-feature>
+    </sa-feature-grid>
+  </div>
+
+  <details class="demo-source">
+    <summary>View source</summary>
+<pre><code>&lt;script type="module" src=".../dist/components/sa-feature-grid.js"&gt;&lt;/script&gt;
+&lt;script type="module" src=".../dist/components/sa-feature.js"&gt;&lt;/script&gt;
+
+&lt;sa-feature-grid&gt;
+  &lt;sa-feature title="Block-based"&gt;
+    &lt;svg slot="icon" viewBox="0 0 24 24" fill="currentColor"&gt;...&lt;/svg&gt;
+    &lt;p&gt;Compose backends from independent processing units.&lt;/p&gt;
+  &lt;/sa-feature&gt;
+  &lt;sa-feature title="Sandboxed"&gt;
+    &lt;span slot="icon"&gt;🔒&lt;/span&gt;
+    &lt;p&gt;Each block runs in its own WASM sandbox.&lt;/p&gt;
+  &lt;/sa-feature&gt;
+  &lt;sa-feature title="Substitutable"&gt;
+    &lt;p&gt;Icon slot is optional.&lt;/p&gt;
+  &lt;/sa-feature&gt;
+&lt;/sa-feature-grid&gt;</code></pre>
+  </details>
+
+  <h3 style="font-size: var(--sa-text-lg); margin-top: var(--sa-space-8); margin-bottom: var(--sa-space-2);">&lt;sa-feature-grid&gt;</h3>
+  <table class="demo-api-table">
+    <thead>
+      <tr><th>Kind</th><th>Name</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>slot</td><td>(default)</td><td>Any children. <code>&lt;sa-feature&gt;</code> is typical but not required.</td></tr>
+      <tr><td>part</td><td><code>container</code></td><td>The CSS Grid container. Override to change column min-width or gap.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size: var(--sa-text-lg); margin-top: var(--sa-space-8); margin-bottom: var(--sa-space-2);">&lt;sa-feature&gt;</h3>
+  <table class="demo-api-table">
+    <thead>
+      <tr><th>Kind</th><th>Name</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>attribute</td><td><code>title</code></td><td><b>Required.</b> Renders as the H3.</td></tr>
+      <tr><td>slot</td><td><code>icon</code></td><td>Optional. SVG (will inherit accent via <code>currentColor</code>) or emoji span.</td></tr>
+      <tr><td>slot</td><td>(default)</td><td>Body description. Typically a paragraph or short prose.</td></tr>
+      <tr><td>part</td><td><code>container</code></td><td>The card itself.</td></tr>
+      <tr><td>part</td><td><code>icon</code> / <code>title</code> / <code>body</code></td><td>Each individually styleable.</td></tr>
     </tbody>
   </table>
 </section>
