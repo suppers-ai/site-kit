@@ -1,0 +1,46 @@
+/* reset.css — minimal reset, not a full Normalize.
+   Depends on tokens.css being concatenated before this file. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+ul, ol,
+figure,
+blockquote,
+dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--sa-bg);
+  color: var(--sa-text);
+  font-family: var(--sa-font-sans);
+  font-size: var(--sa-text-base);
+  line-height: var(--sa-leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sa-accent);
+  outline-offset: 2px;
+}
