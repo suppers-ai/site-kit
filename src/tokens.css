@@ -1,0 +1,71 @@
+/* tokens.css — design tokens for site-kit.
+   All custom properties live on :root. Consuming sites override the
+   semantic colors (most commonly --sa-accent) by re-declaring on
+   :root in their own stylesheet, loaded after this file. */
+
+:root {
+  /* ── Colors — neutrals (Tailwind v3 gray, locked) ──────────── */
+  --sa-gray-50:  #f9fafb;
+  --sa-gray-100: #f3f4f6;
+  --sa-gray-200: #e5e7eb;
+  --sa-gray-300: #d1d5db;
+  --sa-gray-400: #9ca3af;
+  --sa-gray-500: #6b7280;
+  --sa-gray-600: #4b5563;
+  --sa-gray-700: #374151;
+  --sa-gray-800: #1f2937;
+  --sa-gray-900: #111827;
+  --sa-gray-950: #030712;
+
+  /* ── Colors — semantic (per-site override surface) ─────────── */
+  --sa-accent:        #1e3a5f;
+  --sa-accent-hover:  color-mix(in srgb, var(--sa-accent) 85%, black);
+  --sa-text:          var(--sa-gray-800);
+  --sa-text-muted:    var(--sa-gray-500);
+  --sa-bg:            var(--sa-gray-50);
+  --sa-bg-card:       #ffffff;
+  --sa-border:        var(--sa-gray-200);
+  --sa-code-bg:       var(--sa-gray-100);
+  --sa-code-block-bg: #1e1e1e;
+  --sa-code-block-fg: #d4d4d4;
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --sa-font-sans: 'Itim', system-ui, -apple-system, sans-serif;
+  --sa-font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+
+  --sa-text-xs:   0.75rem;
+  --sa-text-sm:   0.875rem;
+  --sa-text-base: 1rem;
+  --sa-text-lg:   1.125rem;
+  --sa-text-xl:   1.25rem;
+  --sa-text-2xl:  1.5rem;
+  --sa-text-3xl:  1.875rem;
+  --sa-text-4xl:  2.25rem;
+  --sa-text-5xl:  3rem;
+
+  --sa-leading-tight:   1.25;
+  --sa-leading-normal:  1.5;
+  --sa-leading-relaxed: 1.625;
+
+  /* ── Spacing (4px base) ────────────────────────────────────── */
+  --sa-space-1:  0.25rem;
+  --sa-space-2:  0.5rem;
+  --sa-space-3:  0.75rem;
+  --sa-space-4:  1rem;
+  --sa-space-6:  1.5rem;
+  --sa-space-8:  2rem;
+  --sa-space-12: 3rem;
+  --sa-space-16: 4rem;
+  --sa-space-24: 6rem;
+
+  /* ── Radii + shadows ───────────────────────────────────────── */
+  --sa-radius-sm: 4px;
+  --sa-radius-md: 8px;
+  --sa-radius-lg: 12px;
+
+  --sa-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --sa-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* ── Layout ────────────────────────────────────────────────── */
+  --sa-max-width: 72rem;
+}
