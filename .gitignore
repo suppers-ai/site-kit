@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Dependencies (precaution — this repo doesn't currently use Node)
+node_modules/
+
+# Local previews
+.playwright/
+.playwright-mcp/
