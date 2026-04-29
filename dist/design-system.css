@@ -1,5 +1,5 @@
-/* site-kit/design-system.css — built 2026-04-29T02:27:53Z.
-   Source: src/{tokens,reset,typography}.css. Do not edit. */
+/* site-kit/design-system.css — concatenation of
+   src/{tokens,reset,typography}.css. Do not edit. */
 
 /* tokens.css — design tokens for site-kit.
    All custom properties live on :root. Consuming sites override the
