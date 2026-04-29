@@ -202,12 +202,12 @@
 <pre><code>&lt;script type="module" src=".../dist/components/sa-hero.js"&gt;&lt;/script&gt;
 
 &lt;sa-hero
-  eyebrow="WAFER 0.2"
-  title="Compose backends from blocks"
-  subtitle="A runtime that wires independent blocks into HTTP services."
+  eyebrow="Foundation v0.1.0"
+  title="Compose your site from blocks"
+  subtitle="A small kit of tokens, typography, and web components."
   cta-href="/docs/quickstart"
   cta-label="Get started"&gt;
-  &lt;img slot="media" src="/img/architecture.svg" alt=""&gt;
+  &lt;img slot="media" src="/img/illustration.svg" alt=""&gt;
 &lt;/sa-hero&gt;</code></pre>
   </details>
 
@@ -287,21 +287,21 @@
 
   <div class="demo-stage">
     <sa-feature-grid>
-      <sa-feature title="Block-based">
+      <sa-feature title="Drop-in modules">
         <svg slot="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <rect x="3" y="3" width="8" height="8" rx="1"/>
           <rect x="13" y="3" width="8" height="8" rx="1"/>
           <rect x="3" y="13" width="8" height="8" rx="1"/>
           <rect x="13" y="13" width="8" height="8" rx="1"/>
         </svg>
-        <p>Compose backends from independent processing units that share nothing but messages.</p>
+        <p>Each component is a single ES module under <code>dist/components/</code>. A page imports only what it uses; nothing else loads.</p>
       </sa-feature>
-      <sa-feature title="Sandboxed">
-        <span slot="icon" style="font-size: 24px;">🔒</span>
-        <p>Each block runs in its own WASM sandbox with no ambient access — you get to choose what goes in and what comes out.</p>
+      <sa-feature title="Themed once">
+        <span slot="icon" style="font-size: 24px;">🎨</span>
+        <p>Override <code>--sa-accent</code> on <code>:root</code> and every component picks it up automatically through CSS-custom-property inheritance.</p>
       </sa-feature>
-      <sa-feature title="Substitutable">
-        <p>Swap any block for another that speaks the same interface. The icon slot is optional, so this card has none.</p>
+      <sa-feature title="Optional slots">
+        <p>Slots collapse cleanly when nothing is provided. This card has no <code>icon</code> slot — the layout adjusts without empty space.</p>
       </sa-feature>
     </sa-feature-grid>
   </div>
@@ -312,16 +312,16 @@
 &lt;script type="module" src=".../dist/components/sa-feature.js"&gt;&lt;/script&gt;
 
 &lt;sa-feature-grid&gt;
-  &lt;sa-feature title="Block-based"&gt;
+  &lt;sa-feature title="Drop-in modules"&gt;
     &lt;svg slot="icon" viewBox="0 0 24 24" fill="currentColor"&gt;...&lt;/svg&gt;
-    &lt;p&gt;Compose backends from independent processing units.&lt;/p&gt;
+    &lt;p&gt;Each component is a single ES module under dist/components/.&lt;/p&gt;
   &lt;/sa-feature&gt;
-  &lt;sa-feature title="Sandboxed"&gt;
-    &lt;span slot="icon"&gt;🔒&lt;/span&gt;
-    &lt;p&gt;Each block runs in its own WASM sandbox.&lt;/p&gt;
+  &lt;sa-feature title="Themed once"&gt;
+    &lt;span slot="icon"&gt;🎨&lt;/span&gt;
+    &lt;p&gt;Override --sa-accent and every component picks it up.&lt;/p&gt;
   &lt;/sa-feature&gt;
-  &lt;sa-feature title="Substitutable"&gt;
-    &lt;p&gt;Icon slot is optional.&lt;/p&gt;
+  &lt;sa-feature title="Optional slots"&gt;
+    &lt;p&gt;Slots collapse cleanly when not provided.&lt;/p&gt;
   &lt;/sa-feature&gt;
 &lt;/sa-feature-grid&gt;</code></pre>
   </details>
