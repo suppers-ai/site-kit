@@ -17,17 +17,15 @@ Foundation v0.1.0 ships:
 
 ## Use it
 
-> **Note:** the URL below is a placeholder. GitHub Pages hosting lands
-> in a follow-up PR. Until then, vendor `dist/` and `fonts/` into your
-> own static assets.
+The kit is hosted on GitHub Pages — see the [live showcase](https://suppers-ai.github.io/site-kit/showcase/) for every token and component rendered live.
 
 ```html
-<link rel="stylesheet" href="https://…/site-kit/dist/design-system.css">
+<link rel="stylesheet" href="https://suppers-ai.github.io/site-kit/dist/design-system.css">
 ```
 
-The CSS references font files via `../fonts/`, so consumers must
-deploy `dist/design-system.css` alongside a sibling `fonts/` directory
-(i.e. both at the same URL prefix).
+The CSS references font files via `../fonts/`, so consumers vendoring
+the kit themselves must deploy `dist/design-system.css` alongside a
+sibling `fonts/` directory. Linking the hosted URL above just works.
 
 ### Components
 
@@ -35,8 +33,11 @@ Each web component is a single ES module under `dist/components/`. A
 page imports only the components it uses:
 
 ```html
-<script type="module" src="https://…/site-kit/dist/components/sa-header.js"></script>
-<script type="module" src="https://…/site-kit/dist/components/sa-hero.js"></script>
+<script type="module" src="https://suppers-ai.github.io/site-kit/dist/components/sa-header.js"></script>
+<script type="module" src="https://suppers-ai.github.io/site-kit/dist/components/sa-hero.js"></script>
+<script type="module" src="https://suppers-ai.github.io/site-kit/dist/components/sa-feature-grid.js"></script>
+<script type="module" src="https://suppers-ai.github.io/site-kit/dist/components/sa-feature.js"></script>
+<script type="module" src="https://suppers-ai.github.io/site-kit/dist/components/sa-footer.js"></script>
 
 <sa-header>
   <a slot="brand" href="/">acme.example</a>
@@ -50,6 +51,21 @@ page imports only the components it uses:
   cta-href="/docs"
   cta-label="Read more">
 </sa-hero>
+
+<sa-feature-grid>
+  <sa-feature title="Drop-in modules">
+    <p>Each component is a single ES module — import only what you use.</p>
+  </sa-feature>
+  <sa-feature title="Themed once">
+    <p>Override <code>--sa-accent</code> on <code>:root</code> and every component picks it up.</p>
+  </sa-feature>
+</sa-feature-grid>
+
+<sa-footer>
+  <strong slot="brand">acme.example</strong>
+  <nav slot="links"><a href="/docs">Docs</a></nav>
+  <span slot="copyright">© 2026 Acme.</span>
+</sa-footer>
 ```
 
 Components are styled via Shadow DOM and pick up `--sa-accent`
