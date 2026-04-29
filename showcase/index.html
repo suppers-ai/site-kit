@@ -9,6 +9,7 @@
   /* Showcase-specific layout. Real sites should NOT need their own
      styles — anything used here that proves common should graduate
      into the kit in a follow-up PR. */
+  /* Page padding is a host-site decision, not a kit guarantee. */
   body { padding-block: var(--sa-space-12); }
 
   section { margin-block: var(--sa-space-16); }
@@ -19,13 +20,13 @@
     margin-bottom: var(--sa-space-6);
   }
 
-  .sa-swatches {
+  .demo-swatches {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: var(--sa-space-3);
   }
 
-  .sa-swatch {
+  .demo-swatch {
     background: var(--sa-bg-card);
     border: 1px solid var(--sa-border);
     border-radius: var(--sa-radius-md);
@@ -33,23 +34,23 @@
     font-size: var(--sa-text-xs);
   }
 
-  .sa-swatch .chip { height: 80px; }
-  .sa-swatch .meta { padding: var(--sa-space-2) var(--sa-space-3); }
-  .sa-swatch .name { color: var(--sa-text); font-family: var(--sa-font-mono); }
-  .sa-swatch .hex  { color: var(--sa-text-muted); }
+  .demo-swatch .chip { height: 80px; }
+  .demo-swatch .meta { padding: var(--sa-space-2) var(--sa-space-3); }
+  .demo-swatch .name { color: var(--sa-text); font-family: var(--sa-font-mono); }
+  .demo-swatch .hex  { color: var(--sa-text-muted); }
 
-  .sa-stack { display: flex; flex-direction: column; gap: var(--sa-space-4); }
+  .demo-stack { display: flex; flex-direction: column; gap: var(--sa-space-4); }
 
-  .sa-bar {
+  .demo-bar {
     display: flex; align-items: center; gap: var(--sa-space-3);
     font-family: var(--sa-font-mono);
     font-size: var(--sa-text-sm);
     color: var(--sa-text-muted);
   }
-  .sa-bar .fill { background: var(--sa-accent); height: 12px; border-radius: var(--sa-radius-sm); }
+  .demo-bar .fill { background: var(--sa-accent); height: 12px; border-radius: var(--sa-radius-sm); }
 
-  .sa-boxrow { display: flex; gap: var(--sa-space-4); flex-wrap: wrap; }
-  .sa-box {
+  .demo-boxrow { display: flex; gap: var(--sa-space-4); flex-wrap: wrap; }
+  .demo-box {
     background: var(--sa-bg-card);
     border: 1px solid var(--sa-border);
     width: 120px; height: 80px;
@@ -77,38 +78,38 @@
 <div class="sa-container">
 
 <header class="kit-header">
-  <div class="accent-chip" title="--sa-accent"></div>
+  <div class="accent-chip" aria-hidden="true"></div>
   <h1>site-kit</h1>
   <span style="color: var(--sa-text-muted)">foundation v0.1.0</span>
 </header>
 
 <section>
   <h2>Color — neutrals</h2>
-  <div class="sa-swatches">
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-50)"></div><div class="meta"><div class="name">--sa-gray-50</div><div class="hex">#f9fafb</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-100)"></div><div class="meta"><div class="name">--sa-gray-100</div><div class="hex">#f3f4f6</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-200)"></div><div class="meta"><div class="name">--sa-gray-200</div><div class="hex">#e5e7eb</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-300)"></div><div class="meta"><div class="name">--sa-gray-300</div><div class="hex">#d1d5db</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-400)"></div><div class="meta"><div class="name">--sa-gray-400</div><div class="hex">#9ca3af</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-500)"></div><div class="meta"><div class="name">--sa-gray-500</div><div class="hex">#6b7280</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-600)"></div><div class="meta"><div class="name">--sa-gray-600</div><div class="hex">#4b5563</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-700)"></div><div class="meta"><div class="name">--sa-gray-700</div><div class="hex">#374151</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-800)"></div><div class="meta"><div class="name">--sa-gray-800</div><div class="hex">#1f2937</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-900)"></div><div class="meta"><div class="name">--sa-gray-900</div><div class="hex">#111827</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-gray-950)"></div><div class="meta"><div class="name">--sa-gray-950</div><div class="hex">#030712</div></div></div>
+  <div class="demo-swatches">
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-50)"></div><div class="meta"><div class="name">--sa-gray-50</div><div class="hex">#f9fafb</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-100)"></div><div class="meta"><div class="name">--sa-gray-100</div><div class="hex">#f3f4f6</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-200)"></div><div class="meta"><div class="name">--sa-gray-200</div><div class="hex">#e5e7eb</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-300)"></div><div class="meta"><div class="name">--sa-gray-300</div><div class="hex">#d1d5db</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-400)"></div><div class="meta"><div class="name">--sa-gray-400</div><div class="hex">#9ca3af</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-500)"></div><div class="meta"><div class="name">--sa-gray-500</div><div class="hex">#6b7280</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-600)"></div><div class="meta"><div class="name">--sa-gray-600</div><div class="hex">#4b5563</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-700)"></div><div class="meta"><div class="name">--sa-gray-700</div><div class="hex">#374151</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-800)"></div><div class="meta"><div class="name">--sa-gray-800</div><div class="hex">#1f2937</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-900)"></div><div class="meta"><div class="name">--sa-gray-900</div><div class="hex">#111827</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-gray-950)"></div><div class="meta"><div class="name">--sa-gray-950</div><div class="hex">#030712</div></div></div>
   </div>
 </section>
 
 <section>
   <h2>Color — semantic</h2>
-  <div class="sa-swatches">
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-accent)"></div><div class="meta"><div class="name">--sa-accent</div><div class="hex">#1e3a5f</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-accent-hover)"></div><div class="meta"><div class="name">--sa-accent-hover</div><div class="hex">derived</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-bg)"></div><div class="meta"><div class="name">--sa-bg</div><div class="hex">gray-50</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-bg-card)"></div><div class="meta"><div class="name">--sa-bg-card</div><div class="hex">#ffffff</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-border)"></div><div class="meta"><div class="name">--sa-border</div><div class="hex">gray-200</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-code-bg)"></div><div class="meta"><div class="name">--sa-code-bg</div><div class="hex">gray-100</div></div></div>
-    <div class="sa-swatch"><div class="chip" style="background:var(--sa-code-block-bg)"></div><div class="meta"><div class="name">--sa-code-block-bg</div><div class="hex">#1e1e1e</div></div></div>
+  <div class="demo-swatches">
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-accent)"></div><div class="meta"><div class="name">--sa-accent</div><div class="hex">#1e3a5f</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-accent-hover)"></div><div class="meta"><div class="name">--sa-accent-hover</div><div class="hex">derived</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-bg)"></div><div class="meta"><div class="name">--sa-bg</div><div class="hex">gray-50</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-bg-card)"></div><div class="meta"><div class="name">--sa-bg-card</div><div class="hex">#ffffff</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-border)"></div><div class="meta"><div class="name">--sa-border</div><div class="hex">gray-200</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-code-bg)"></div><div class="meta"><div class="name">--sa-code-bg</div><div class="hex">gray-100</div></div></div>
+    <div class="demo-swatch"><div class="chip" style="background:var(--sa-code-block-bg)"></div><div class="meta"><div class="name">--sa-code-block-bg</div><div class="hex">#1e1e1e</div></div></div>
   </div>
 </section>
 
@@ -140,52 +141,50 @@
 
 <section>
   <h2>Spacing</h2>
-  <div class="sa-stack">
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-1)"></div>--sa-space-1 (0.25rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-2)"></div>--sa-space-2 (0.5rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-3)"></div>--sa-space-3 (0.75rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-4)"></div>--sa-space-4 (1rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-6)"></div>--sa-space-6 (1.5rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-8)"></div>--sa-space-8 (2rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-12)"></div>--sa-space-12 (3rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-16)"></div>--sa-space-16 (4rem)</div>
-    <div class="sa-bar"><div class="fill" style="width:var(--sa-space-24)"></div>--sa-space-24 (6rem)</div>
+  <div class="demo-stack">
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-1)"></div>--sa-space-1 (0.25rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-2)"></div>--sa-space-2 (0.5rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-3)"></div>--sa-space-3 (0.75rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-4)"></div>--sa-space-4 (1rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-6)"></div>--sa-space-6 (1.5rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-8)"></div>--sa-space-8 (2rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-12)"></div>--sa-space-12 (3rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-16)"></div>--sa-space-16 (4rem)</div>
+    <div class="demo-bar"><div class="fill" style="width:var(--sa-space-24)"></div>--sa-space-24 (6rem)</div>
   </div>
 </section>
 
 <section>
   <h2>Radii</h2>
-  <div class="sa-boxrow">
-    <div class="sa-box" style="border-radius:var(--sa-radius-sm)">--sa-radius-sm</div>
-    <div class="sa-box" style="border-radius:var(--sa-radius-md)">--sa-radius-md</div>
-    <div class="sa-box" style="border-radius:var(--sa-radius-lg)">--sa-radius-lg</div>
+  <div class="demo-boxrow">
+    <div class="demo-box" style="border-radius:var(--sa-radius-sm)">--sa-radius-sm</div>
+    <div class="demo-box" style="border-radius:var(--sa-radius-md)">--sa-radius-md</div>
+    <div class="demo-box" style="border-radius:var(--sa-radius-lg)">--sa-radius-lg</div>
   </div>
 </section>
 
 <section>
   <h2>Shadows</h2>
-  <div class="sa-boxrow">
-    <div class="sa-box" style="box-shadow:var(--sa-shadow-sm); border-color:transparent">--sa-shadow-sm</div>
-    <div class="sa-box" style="box-shadow:var(--sa-shadow-md); border-color:transparent">--sa-shadow-md</div>
+  <div class="demo-boxrow">
+    <div class="demo-box" style="box-shadow:var(--sa-shadow-sm); border-color:transparent">--sa-shadow-sm</div>
+    <div class="demo-box" style="box-shadow:var(--sa-shadow-md); border-color:transparent">--sa-shadow-md</div>
   </div>
 </section>
 
 <section>
   <h2><code>.sa-prose</code> demo</h2>
   <div class="sa-prose">
-    <h1>Composing a runtime from blocks</h1>
-    <p>WAFER is a runtime that composes services from independent processing units called blocks. Each block declares an interface — a small protocol it speaks — and an instance mode controlling how state is shared.</p>
-    <h2>Why blocks?</h2>
-    <p>Blocks are the smallest unit of reuse: a single capability, behind a single interface, with one configuration surface. They cannot reach across the runtime to call each other directly; everything goes through messages.</p>
-    <h3>Concrete example</h3>
-    <p>The HTTP listener block speaks the <code>http-listener</code> interface. It does not know about the database, the router, or any business logic — it only forwards parsed requests to whichever flow it is configured for.</p>
-    <pre><code>flow main:
-  http-listener  port: 8090
-  router         routes: [...]</code></pre>
+    <h1>How prose flows in site-kit</h1>
+    <p>Long-form text picks up its rhythm from <code>.sa-prose</code>: vertical spacing scales with heading level, lists indent further than top-level paragraphs, and code blocks adopt the dark surface treatment without manual styling.</p>
+    <h2>What gets styled</h2>
+    <p>Direct children of <code>.sa-prose</code> get the rhythm rules. Nested elements (a list inside a blockquote, say) keep their own spacing, so reusable widgets dropped into prose don't fight the article rhythm.</p>
+    <h3>Override surface</h3>
+    <p>Sites override <code>--sa-accent</code> on <code>:root</code> after loading the kit. Hover and focus states derive automatically — no per-site recolouring.</p>
+    <pre><code>:root { --sa-accent: #fe6627; }   /* one declaration */</code></pre>
     <ul>
-      <li>One block, one job.</li>
-      <li>State is local; sharing is explicit.</li>
-      <li>Substitution is free as long as the interface matches.</li>
+      <li>Tokens are the contract.</li>
+      <li>Element styles are the defaults.</li>
+      <li>Utilities (<code>.sa-container</code>, <code>.sa-prose</code>) are the only kit-shipped class names.</li>
     </ul>
   </div>
 </section>
