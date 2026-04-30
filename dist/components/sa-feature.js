@@ -46,6 +46,10 @@ tpl.innerHTML = `
     font-size: var(--sa-text-base);
     line-height: var(--sa-leading-relaxed);
     flex-grow: 1;
+    /* Cap reading measure at ~60 characters to keep prose readable
+     * on wide grid columns. Consumers can override per-card via
+     * ::part(body) { max-width: ... }. */
+    max-width: 60ch;
   }
 </style>
 <div part="container">

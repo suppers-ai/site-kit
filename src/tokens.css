@@ -74,8 +74,24 @@
   --sa-radius-md: 8px;
   --sa-radius-lg: 12px;
 
+  /* ── Shadows ───────────────────────────────────────────────── */
+  /* The kit components themselves use hairline-only depth (border +
+   * outline), so these tokens are unused internally. Exposed for
+   * consumers who want a subtle elevation step in their own non-kit
+   * components — referenced from the Tailwind preset as `shadow-sa-sm`
+   * / `shadow-sa-md`. */
   --sa-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --sa-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* ── Z-index scale ─────────────────────────────────────────── */
+  /* A documented scale so consumers can layer their own UI relative
+   * to kit chrome without reading source. The header sits at 40 so
+   * a typical app modal (50+) renders above it. */
+  --sa-z-base:    0;
+  --sa-z-sticky:  10;
+  --sa-z-header:  40;
+  --sa-z-modal:   50;
+  --sa-z-toast:   60;
 
   /* ── Layout ────────────────────────────────────────────────── */
   --sa-max-width: 72rem;
