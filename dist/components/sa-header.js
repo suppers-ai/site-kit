@@ -65,8 +65,22 @@ tpl.innerHTML = `
       align-items: stretch;
       gap: var(--sa-space-3);
     }
+    /* Many-item nav: horizontally scrollable single-row strip rather
+     * than a multi-row wrap that grows the header to ~180px tall on a
+     * 375px viewport. Established pattern (Twitter mobile tabs, GH
+     * repo tabs). Hidden scrollbar keeps the look clean — flick-to-
+     * scroll is the affordance. */
     [part="nav"] {
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    [part="nav"]::-webkit-scrollbar {
+      display: none;
+    }
+    ::slotted([slot="nav"]) {
+      flex-shrink: 0;
     }
   }
 </style>
