@@ -72,6 +72,23 @@ Components are styled via Shadow DOM and pick up `--sa-accent`
 automatically through CSS-custom-property inheritance — no extra
 wiring per component.
 
+For chat-style app surfaces, `<sa-chat>` provides a two-region layout
+(scrollable messages, pinned composer) that keeps your messages and
+composer in light DOM so existing selectors like `#messages` and
+`#user-input` remain queryable from app code:
+
+```html
+<script type="module" src="https://suppers-ai.github.io/site-kit/dist/components/sa-chat.js"></script>
+
+<sa-chat>
+  <div slot="messages" id="messages"></div>
+  <form slot="composer" id="composer">
+    <textarea id="user-input" placeholder="Ask anything…"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</sa-chat>
+```
+
 ### Tailwind preset
 
 Tailwind v3 consumers can pick up `--sa-*` token values as utility
