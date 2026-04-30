@@ -23,3 +23,22 @@ jobs:
         # build.sh after editing src/. The order-of-concatenation
         # assertion inside build.sh has already passed by this point.
         run: git diff --exit-code dist/
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run smoke tests
+        run: npx playwright test
