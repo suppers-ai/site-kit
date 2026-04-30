@@ -75,5 +75,10 @@ for src_js in src/components/*.js; do
 done
 shopt -u nullglob
 
+# Tailwind preset: not bundled into dist/, but syntax-check it so a
+# CommonJS typo doesn't ship on main.
+node --check tailwind-preset.js
+
 printf 'wrote %s (%d bytes; first code line opens :root)\n' "$out" "$bytes"
 printf 'copied %d component(s) to dist/components/\n' "$component_count"
+printf 'syntax-checked tailwind-preset.js\n'

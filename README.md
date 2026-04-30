@@ -72,6 +72,27 @@ Components are styled via Shadow DOM and pick up `--sa-accent`
 automatically through CSS-custom-property inheritance — no extra
 wiring per component.
 
+### Tailwind preset
+
+Tailwind v3 consumers can pick up `--sa-*` token values as utility
+classes (e.g. `bg-sa-accent text-sa-muted px-sa-4 text-sa-lg`) by
+extending the bundled preset:
+
+```js
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  presets: [require('@suppers-ai/site-kit/tailwind-preset')],
+  content: ['./src/**/*.{html,ts,tsx,vue,svelte}'],
+};
+```
+
+The preset's tokens reference the CSS variables (`var(--sa-accent)` etc.),
+not concrete hex values, so per-site `:root { --sa-accent: … }`
+overrides keep working with no Tailwind-config rebuild. The kit's
+`design-system.css` must still be loaded in the HTML — the preset only
+declares the utility-class API, not the variable values.
+
 ## Override the accent
 
 The default accent is `#1e3a5f`. Override with one declaration in your
