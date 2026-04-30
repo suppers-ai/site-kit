@@ -41,10 +41,14 @@ tpl.innerHTML = `
   ::slotted(a) {
     color: var(--sa-text);
     text-decoration: none;
-    transition: color 0.15s;
   }
   ::slotted(a:hover) {
     color: var(--sa-accent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    ::slotted(a) {
+      transition: color 0.15s;
+    }
   }
   @media (max-width: 720px) {
     [part="top"] {

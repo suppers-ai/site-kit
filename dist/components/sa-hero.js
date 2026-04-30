@@ -55,10 +55,14 @@ tpl.innerHTML = `
     text-decoration: none;
     padding: var(--sa-space-3) var(--sa-space-6);
     border-radius: var(--sa-radius-md);
-    transition: background-color 0.15s;
   }
   [part="cta"]:hover {
     background: var(--sa-accent-hover);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    [part="cta"] {
+      transition: background-color 0.15s;
+    }
   }
   :host([align="center"]) [part="cta"] {
     margin-inline: auto;

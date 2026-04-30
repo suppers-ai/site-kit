@@ -19,7 +19,11 @@
 
   /* ── Colors — semantic (per-site override surface) ─────────── */
   --sa-accent:        #1e3a5f;
-  --sa-accent-hover:  color-mix(in srgb, var(--sa-accent) 85%, black);
+  /* oklch is perceptually uniform — for yellow/orange accents (wafer's
+   * #FCC450, gizza's #f54e00) srgb mixing produces a muddy/olive shift,
+   * oklch produces clean darkening. Browser support floor matches the
+   * kit's other modern-only requirements. */
+  --sa-accent-hover:  color-mix(in oklch, var(--sa-accent) 85%, black);
   --sa-text:          var(--sa-gray-800);
   --sa-text-muted:    var(--sa-gray-500);
   --sa-bg:            var(--sa-gray-50);
@@ -68,4 +72,7 @@
 
   /* ── Layout ────────────────────────────────────────────────── */
   --sa-max-width: 72rem;
+  /* Default min column width for `<sa-feature-grid>` and other auto-fit
+   * grids. Override per-consumer when 280px doesn't match the content. */
+  --sa-grid-min: 280px;
 }
