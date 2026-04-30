@@ -1,0 +1,24 @@
+{
+  "name": "@suppers-ai/site-kit",
+  "version": "0.1.0",
+  "description": "Shared design system and component library for Suppers AI sites.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suppers-ai/site-kit.git"
+  },
+  "main": "tailwind-preset.js",
+  "files": [
+    "dist/",
+    "fonts/",
+    "src/",
+    "tailwind-preset.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./tailwind-preset": "./tailwind-preset.js",
+    "./dist/*": "./dist/*",
+    "./fonts/*": "./fonts/*"
+  }
+}
