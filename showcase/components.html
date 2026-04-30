@@ -10,6 +10,7 @@
 <script type="module" src="../dist/components/sa-footer.js"></script>
 <script type="module" src="../dist/components/sa-feature-grid.js"></script>
 <script type="module" src="../dist/components/sa-feature.js"></script>
+<script type="module" src="../dist/components/sa-chat.js"></script>
 <style>
   /* Showcase-specific layout. Anything used here that proves common
      should graduate into the kit in a follow-up PR. */
@@ -348,6 +349,62 @@
       <tr><td>slot</td><td>(default)</td><td>Body description. Typically a paragraph or short prose.</td></tr>
       <tr><td>part</td><td><code>container</code></td><td>The card itself.</td></tr>
       <tr><td>part</td><td><code>icon</code> / <code>title</code> / <code>body</code></td><td>Each individually styleable.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="demo-block">
+  <h2>&lt;sa-chat&gt;</h2>
+  <p>Two-region layout for chat surfaces: scrollable messages on top, pinned composer on the bottom. Both regions are slot-only — the kit owns layout (max-width, sizing, hairline divider, padding via tokens), the consumer owns the appearance of individual messages and composer controls.</p>
+
+  <div class="demo-stage" style="height: 360px; display: flex; flex-direction: column;">
+    <sa-chat>
+      <div slot="messages" id="demo-chat-messages" style="display: flex; flex-direction: column; gap: var(--sa-space-3);">
+        <div style="align-self: flex-start; background: var(--sa-code-bg); padding: var(--sa-space-3); border-radius: var(--sa-radius-md); max-width: 70%;">
+          <strong style="font-size: var(--sa-text-sm); color: var(--sa-text-muted);">assistant</strong>
+          <p style="margin: var(--sa-space-1) 0 0;">Hi — drop your composer in the <code>composer</code> slot, your messages container in the <code>messages</code> slot. The kit handles the layout.</p>
+        </div>
+        <div style="align-self: flex-end; background: var(--sa-accent); color: white; padding: var(--sa-space-3); border-radius: var(--sa-radius-md); max-width: 70%;">
+          <strong style="font-size: var(--sa-text-sm); opacity: 0.8;">user</strong>
+          <p style="margin: var(--sa-space-1) 0 0;">What stays in light DOM?</p>
+        </div>
+        <div style="align-self: flex-start; background: var(--sa-code-bg); padding: var(--sa-space-3); border-radius: var(--sa-radius-md); max-width: 70%;">
+          <strong style="font-size: var(--sa-text-sm); color: var(--sa-text-muted);">assistant</strong>
+          <p style="margin: var(--sa-space-1) 0 0;">Your slotted children. Selectors like <code>#messages</code> and <code>#user-input</code> stay queryable from your app code.</p>
+        </div>
+      </div>
+      <form slot="composer" style="display: flex; gap: var(--sa-space-2);" onsubmit="event.preventDefault();">
+        <textarea rows="1" placeholder="Ask anything…" style="flex: 1; padding: var(--sa-space-2) var(--sa-space-3); border: 1px solid var(--sa-border); border-radius: var(--sa-radius-md); font-family: var(--sa-font-sans); font-size: var(--sa-text-base); resize: none;"></textarea>
+        <button type="submit" style="padding: var(--sa-space-2) var(--sa-space-4); background: var(--sa-accent); color: white; border: none; border-radius: var(--sa-radius-md); font-family: inherit; cursor: pointer;">Send</button>
+      </form>
+    </sa-chat>
+  </div>
+
+  <details class="demo-source">
+    <summary>View source</summary>
+<pre><code>&lt;script type="module" src=".../dist/components/sa-chat.js"&gt;&lt;/script&gt;
+
+&lt;sa-chat&gt;
+  &lt;div slot="messages" id="messages"&gt;
+    &lt;!-- consumer's app code appends message nodes here --&gt;
+  &lt;/div&gt;
+  &lt;form slot="composer" id="composer"&gt;
+    &lt;textarea id="user-input" placeholder="Ask anything…"&gt;&lt;/textarea&gt;
+    &lt;button type="submit"&gt;Send&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/sa-chat&gt;</code></pre>
+  </details>
+
+  <table class="demo-api-table">
+    <thead>
+      <tr><th>Kind</th><th>Name</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>slot</td><td><code>messages</code></td><td>Container for the messages list. Stays in light DOM so app code can query and mutate it directly.</td></tr>
+      <tr><td>slot</td><td><code>composer</code></td><td>The composer (typically a <code>&lt;form&gt;</code>). Stays in light DOM for the same reason.</td></tr>
+      <tr><td>part</td><td><code>messages</code></td><td>The scrollable wrapper around the messages slot. Override padding / scroll behavior here.</td></tr>
+      <tr><td>part</td><td><code>composer</code></td><td>The composer wrapper. Override padding / divider / background here.</td></tr>
+      <tr><td>var</td><td><code>--sa-chat-max-width</code></td><td>Container width. Defaults to <code>880px</code>.</td></tr>
     </tbody>
   </table>
 </section>
