@@ -198,3 +198,29 @@ test('reduced-motion preference suppresses the sa-hero CTA transition', async ({
   expect(withMotion).toBe('background-color, transform');
   expect(reducedMotion).toBe('all');
 });
+
+test('sa-header nav uses no-wrap horizontal scroll on narrow viewports', async ({ page }) => {
+  // Below 720px the nav should NOT wrap into multiple rows (which
+  // would make the header ~180px tall for many-item navs). Instead
+  // it should be a single-row horizontally-scrollable strip.
+  // We assert the active CSS properties — actual overflow depends on
+  // font load / link text, which is brittle to assert in a unit test.
+  await page.setViewportSize({ width: 375, height: 667 });
+  await setup(
+    page,
+    `<sa-header>
+       <a slot="brand">Brand</a>
+       <nav slot="nav"><a>One</a><a>Two</a></nav>
+     </sa-header>`,
+    `<script type="module" src="/dist/components/sa-header.js"></script>`,
+  );
+  await page.waitForFunction(() => !!customElements.get('sa-header'));
+
+  const cs = await page.locator('sa-header').evaluate((el) => {
+    const navEl = el.shadowRoot.querySelector('[part="nav"]');
+    const styles = getComputedStyle(navEl);
+    return { flexWrap: styles.flexWrap, overflowX: styles.overflowX };
+  });
+  expect(cs.flexWrap).toBe('nowrap');
+  expect(cs.overflowX).toBe('auto');
+});
