@@ -95,6 +95,78 @@ test('--sa-accent override on :host propagates into shadow components', async ({
   expect(ctaBg).toBe('rgb(255, 0, 128)');
 });
 
+test('--sa-on-accent override sets sa-hero CTA foreground', async ({ page }) => {
+  // Light accents (wafer's gold, gizza's orange) need a paired dark
+  // text color to keep the CTA legible. The kit defaults the token to
+  // white; consumers with light accents must override both.
+  const body = `
+    <style>:root {
+      --sa-accent: #FCC450;
+      --sa-on-accent: rgb(30, 58, 95);
+    }</style>
+    <sa-hero title="Test" subtitle="Sub" cta-href="#" cta-label="Click"></sa-hero>
+  `;
+  const headExtra = `<script type="module" src="/dist/components/sa-hero.js"></script>`;
+  await setup(page, body, headExtra);
+  await page.waitForFunction(() => !!customElements.get('sa-hero'));
+
+  const ctaColor = await page.locator('sa-hero').evaluate((el) => {
+    const cta = el.shadowRoot.querySelector('[part="cta"]');
+    return getComputedStyle(cta).color;
+  });
+  expect(ctaColor).toBe('rgb(30, 58, 95)');
+});
+
+test('sa-hero CTA meets 44px touch target minimum', async ({ page }) => {
+  await setup(
+    page,
+    `<sa-hero title="Test" subtitle="Sub" cta-href="#" cta-label="Click"></sa-hero>`,
+    `<script type="module" src="/dist/components/sa-hero.js"></script>`,
+  );
+  await page.waitForFunction(() => !!customElements.get('sa-hero'));
+
+  const ctaHeight = await page.locator('sa-hero').evaluate((el) => {
+    const cta = el.shadowRoot.querySelector('[part="cta"]');
+    return cta.getBoundingClientRect().height;
+  });
+  expect(ctaHeight).toBeGreaterThanOrEqual(44);
+});
+
+test('focus-visible state declares an outline on kit interactive elements', async ({ page }) => {
+  // We can't easily simulate keyboard focus deterministically from
+  // Playwright (matching `:focus-visible` requires the focus to come
+  // from the keyboard, not a programmatic .focus()). Instead we verify
+  // the rule exists in the component's stylesheet — that's enough to
+  // catch a regression where the rule is removed entirely.
+  await setup(
+    page,
+    `<sa-hero title="Test" cta-href="#" cta-label="Click"></sa-hero>
+     <sa-header><a slot="nav" id="t">Link</a></sa-header>
+     <sa-footer><a slot="links">Link</a></sa-footer>`,
+    `
+      <script type="module" src="/dist/components/sa-hero.js"></script>
+      <script type="module" src="/dist/components/sa-header.js"></script>
+      <script type="module" src="/dist/components/sa-footer.js"></script>
+    `,
+  );
+  await page.waitForFunction(() => !!customElements.get('sa-hero'));
+  await page.waitForFunction(() => !!customElements.get('sa-header'));
+  await page.waitForFunction(() => !!customElements.get('sa-footer'));
+
+  // Read the shadow stylesheet text and check it declares focus-visible.
+  const findings = await page.evaluate(() => {
+    const tags = ['sa-hero', 'sa-header', 'sa-footer'];
+    return tags.map((tag) => {
+      const el = document.querySelector(tag);
+      const styleEl = el.shadowRoot.querySelector('style');
+      return { tag, hasFocusVisible: styleEl.textContent.includes(':focus-visible') };
+    });
+  });
+  for (const f of findings) {
+    expect(f.hasFocusVisible, `${f.tag} should declare :focus-visible`).toBe(true);
+  }
+});
+
 test('reduced-motion preference suppresses the sa-hero CTA transition', async ({ page }) => {
   // sa-hero's `[part="cta"]` declares `transition: background-color 0.15s`
   // only inside `@media (prefers-reduced-motion: no-preference)`. Under
@@ -121,6 +193,8 @@ test('reduced-motion preference suppresses the sa-hero CTA transition', async ({
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const reducedMotion = await ctaTransition(page);
 
-  expect(withMotion).toBe('background-color');
+  // CTA declares `transition: background-color 0.15s, transform 0.1s`
+  // inside the `no-preference` block — both properties listed.
+  expect(withMotion).toBe('background-color, transform');
   expect(reducedMotion).toBe('all');
 });

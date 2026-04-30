@@ -46,9 +46,17 @@ tpl.innerHTML = `
   ::slotted(a:hover) {
     color: var(--sa-accent);
   }
+  ::slotted(a:focus-visible) {
+    outline: 2px solid var(--sa-accent);
+    outline-offset: 2px;
+    border-radius: var(--sa-radius-sm);
+  }
+  ::slotted(a:active) {
+    opacity: 0.7;
+  }
   @media (prefers-reduced-motion: no-preference) {
     ::slotted(a) {
-      transition: color 0.15s;
+      transition: color 0.15s, opacity 0.1s;
     }
   }
   @media (max-width: 720px) {

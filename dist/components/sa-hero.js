@@ -49,9 +49,14 @@ tpl.innerHTML = `
     margin-bottom: var(--sa-space-8);
   }
   [part="cta"] {
-    display: inline-block;
+    /* inline-flex + min-height keeps the CTA at the WCAG/HIG/MD touch
+     * minimum (44pt) regardless of label length or font scale. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     background: var(--sa-accent);
-    color: var(--sa-bg-card);
+    color: var(--sa-on-accent);
     text-decoration: none;
     padding: var(--sa-space-3) var(--sa-space-6);
     border-radius: var(--sa-radius-md);
@@ -59,9 +64,16 @@ tpl.innerHTML = `
   [part="cta"]:hover {
     background: var(--sa-accent-hover);
   }
+  [part="cta"]:focus-visible {
+    outline: 2px solid var(--sa-accent);
+    outline-offset: 2px;
+  }
+  [part="cta"]:active {
+    transform: scale(0.98);
+  }
   @media (prefers-reduced-motion: no-preference) {
     [part="cta"] {
-      transition: background-color 0.15s;
+      transition: background-color 0.15s, transform 0.1s;
     }
   }
   :host([align="center"]) [part="cta"] {
