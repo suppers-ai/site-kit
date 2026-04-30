@@ -10,7 +10,7 @@ tpl.innerHTML = `
     display: block;
     position: sticky;
     top: 0;
-    z-index: 40;
+    z-index: var(--sa-z-header);
     background: var(--sa-bg-card);
     border-bottom: 1px solid var(--sa-border);
   }
