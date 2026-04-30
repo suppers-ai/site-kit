@@ -24,6 +24,13 @@
    * oklch produces clean darkening. Browser support floor matches the
    * kit's other modern-only requirements. */
   --sa-accent-hover:  color-mix(in oklch, var(--sa-accent) 85%, black);
+  /* Foreground for content rendered on top of `--sa-accent` (the sa-hero
+   * CTA, future filled-button components). Default white works for the
+   * kit's dark-blue default accent (10.5:1) but FAILS WCAG on light
+   * accents — wafer's gold (#FCC450) on white = 1.7:1, gizza's orange
+   * (#f54e00) on white = 3.0:1. Consumers with light accents must set
+   * this token alongside `--sa-accent` to keep the CTA legible. */
+  --sa-on-accent:     #ffffff;
   --sa-text:          var(--sa-gray-800);
   --sa-text-muted:    var(--sa-gray-500);
   --sa-bg:            var(--sa-gray-50);
