@@ -33,6 +33,16 @@ tpl.innerHTML = `
     align-items: center;
     gap: var(--sa-space-4);
   }
+  /* When the consumer slots a wrapper element (typical pattern: a single
+   * <nav slot="nav"> with <a> children), make it the flex container so
+   * the inner links get spacing. Without this, the gap above only
+   * applies between sibling slotted elements. */
+  ::slotted([slot="nav"]) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--sa-space-4);
+  }
   [part="actions"] {
     display: flex;
     align-items: center;
@@ -70,17 +80,16 @@ tpl.innerHTML = `
      * 375px viewport. Established pattern (Twitter mobile tabs, GH
      * repo tabs). Hidden scrollbar keeps the look clean — flick-to-
      * scroll is the affordance. */
-    [part="nav"] {
+    [part="nav"],
+    ::slotted([slot="nav"]) {
       flex-wrap: nowrap;
       overflow-x: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
-    [part="nav"]::-webkit-scrollbar {
+    [part="nav"]::-webkit-scrollbar,
+    ::slotted([slot="nav"])::-webkit-scrollbar {
       display: none;
-    }
-    ::slotted([slot="nav"]) {
-      flex-shrink: 0;
     }
   }
 </style>
