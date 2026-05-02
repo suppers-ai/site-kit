@@ -31,6 +31,15 @@ tpl.innerHTML = `
     gap: var(--sa-space-6);
     justify-content: flex-end;
   }
+  /* Same pattern as sa-header: when the consumer slots a wrapper
+   * (e.g. <nav slot="links">), make it the flex container so its
+   * inner <a> children get spacing. */
+  ::slotted([slot="links"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sa-space-6);
+    justify-content: flex-end;
+  }
   [part="bottom"] {
     margin-top: var(--sa-space-8);
     padding-top: var(--sa-space-6);
@@ -64,7 +73,8 @@ tpl.innerHTML = `
       align-items: stretch;
       gap: var(--sa-space-6);
     }
-    [part="links"] {
+    [part="links"],
+    ::slotted([slot="links"]) {
       justify-content: flex-start;
     }
   }
