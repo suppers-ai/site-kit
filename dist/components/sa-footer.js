@@ -8,8 +8,18 @@ tpl.innerHTML = `
 <style>
   :host {
     display: block;
-    background: var(--sa-bg-card);
-    border-top: 1px solid var(--sa-border);
+    /* Footer can run a different theme from the rest of the page (e.g.
+     * dark band beneath a light page). Override these tokens at the
+     * consumer level (or on :host directly via the cascade) to switch
+     * palette without forking the component. Defaults preserve the
+     * previous light-card look. */
+    --sa-footer-bg: var(--sa-bg-card);
+    --sa-footer-text: var(--sa-text);
+    --sa-footer-text-muted: var(--sa-text-muted);
+    --sa-footer-border: var(--sa-border);
+    background: var(--sa-footer-bg);
+    border-top: 1px solid var(--sa-footer-border);
+    color: var(--sa-footer-text);
   }
   [part="container"] {
     max-width: var(--sa-max-width);
@@ -31,10 +41,12 @@ tpl.innerHTML = `
     gap: var(--sa-space-6);
     justify-content: flex-end;
   }
-  /* Same pattern as sa-header: when the consumer slots a wrapper
+  /* Same pattern as sa-header: when the consumer slots a <nav> wrapper
    * (e.g. <nav slot="links">), make it the flex container so its
-   * inner <a> children get spacing. */
-  ::slotted([slot="links"]) {
+   * inner <a> children get spacing. Narrowed to nav-only so consumers
+   * who slot a <div> with their own column layout (grid, etc.) keep
+   * full control without the kit imposing flex/justify rules. */
+  ::slotted(nav[slot="links"]) {
     display: flex;
     flex-wrap: wrap;
     gap: var(--sa-space-6);
@@ -43,12 +55,12 @@ tpl.innerHTML = `
   [part="bottom"] {
     margin-top: var(--sa-space-8);
     padding-top: var(--sa-space-6);
-    border-top: 1px solid var(--sa-border);
+    border-top: 1px solid var(--sa-footer-border);
     font-size: var(--sa-text-sm);
-    color: var(--sa-text-muted);
+    color: var(--sa-footer-text-muted);
   }
   ::slotted(a) {
-    color: var(--sa-text);
+    color: var(--sa-footer-text);
     text-decoration: none;
   }
   ::slotted(a:hover) {
@@ -74,7 +86,7 @@ tpl.innerHTML = `
       gap: var(--sa-space-6);
     }
     [part="links"],
-    ::slotted([slot="links"]) {
+    ::slotted(nav[slot="links"]) {
       justify-content: flex-start;
     }
   }
